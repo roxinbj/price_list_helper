@@ -2,7 +2,7 @@ import gspread
 from enum import Enum
 
 # Define the enum for Item Types
-class ItemType(Enum):
+class SensorType(Enum):
     APPLE = "apple"
     BANANA = "banana"
     CHERRY = "cherry"
@@ -32,7 +32,7 @@ def add_type_qty(sheet_name,item_type, qty):
 
     Args:
         sheet_name (str): The name of the Google Sheet.
-        item_type (ItemType): The type of the item to add.
+        item_type (SensorType): The type of the item to add.
         qty (int): The quantity to add.
     """
     client = get_sheets_client()
@@ -64,10 +64,10 @@ def add_type_qty(sheet_name,item_type, qty):
 # Example usage
 if __name__ == "__main__":
     # Clear all rows in Check In sheet
-    sheet_name = "https://docs.google.com/spreadsheets/d/17CjZ-YG2Fw9vu3pXOk6w0ndQYTt47hhWlPq2dJ0h8rc"
+    sheet_name = "Copy of Sigmotec Inventory"
     print("HElüp")
     clear_sheet(sheet_name)
 
-    a = 2
+    
     # Add 3 apples to the Check In sheet
-    #add_type_qty(sheet_name,ItemType.APPLE, 3)
+    add_type_qty(sheet_name,SensorType.APPLE, 3)
