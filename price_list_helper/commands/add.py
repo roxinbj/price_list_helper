@@ -1,5 +1,5 @@
 import argparse
-from price_list_helper.utils.types import SensorType
+from price_list_helper.utils.helpers import SensorType,add_type_qty
 
 
 def parse_item_type(value):
@@ -17,4 +17,5 @@ def handle_add(args):
     item_type = args.type
     qty = args.qty
     # Logic to add the item
-    print(f"Adding {qty} of type '{item_type}' to the list.")
+    add_type_qty(item_type,qty)
+    #print(f"Adding {qty} of type '{item_type}' to the list.")

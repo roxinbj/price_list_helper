@@ -3,9 +3,18 @@ from enum import Enum
 
 # Define the enum for Item Types
 class SensorType(Enum):
-    APPLE = "apple"
-    BANANA = "banana"
-    CHERRY = "cherry"
+    DRAGINO_PSLB = "dragino_ps-lb" # Analog Reader
+    DRAGINO_DDS75 = "dragino_dds75" # Ultrasonics
+    DRAGINO_LT_22222 = "dragino_lt-22222" # Controller
+    RAK_7240V2_4G = "rak_7240v2-4g" # Gateway 4G
+    RAK_7240V2 = "rak_7240v2" # Gateway Ethernet
+    MILESIGHT_UC300 = "milesight_uc300" # UC300 Controller Lora
+    MILESIGHT_UC300_4G = "milesight_uc300-4g" # UC300 Controller 4G
+    MILESIGHT_EM300 = "milesight_em300" # Pulse Counter
+    CT100 = "ct100" # Controller
+
+
+sheet_name = "Copy of Sigmotec Inventory"
 
 # Authenticate and initialize Google Sheets client
 def get_sheets_client():
@@ -16,7 +25,7 @@ def get_sheets_client():
     service_account = gspread.service_account()
     return service_account
 
-def clear_sheet(sheet_name):
+def clear_sheet():
     """
     Clear all rows in the specified sheet.
     """
@@ -26,7 +35,7 @@ def clear_sheet(sheet_name):
     worksheet.clear()
     print(f"Cleared all rows in sheet: {sheet_name} -> Check In: QR Code Print")
 
-def add_type_qty(sheet_name,item_type, qty):
+def add_type_qty(item_type, qty):
     """
     Add <qty> items of <item_type> to the sheet "Check In: QR Code Print".
 
@@ -40,13 +49,27 @@ def add_type_qty(sheet_name,item_type, qty):
     # Open the sheets
     inventory_status_sheet = client.open(sheet_name).worksheet("Inventory Status")
     check_in_sheet = client.open(sheet_name).worksheet("Check In: QR Code Print")
+    check_out_sheet = client.open(sheet_name).worksheet("Check Out")
 
     # Fetch all data from Inventory Status sheet
     inventory_data = inventory_status_sheet.col_values(1)  # Column A
+    check_in_data = check_in_sheet.col_values(1) # Column A
+    check_out_data = check_out_sheet.col_values(2) # Column B
 
     # Find the last number for the given item type
+    # In Inventory Sheet, Check in sheet and Checkout sheet
     max_number = 0
     for row in inventory_data:
+        if row.startswith(f"{item_type.value}_"):
+            number_part = int(row.split("_")[1])
+            max_number = max(max_number, number_part)
+    
+    for row in check_in_data:
+        if row.startswith(f"{item_type.value}_"):
+            number_part = int(row.split("_")[1])
+            max_number = max(max_number, number_part)
+    
+    for row in check_out_data:
         if row.startswith(f"{item_type.value}_"):
             number_part = int(row.split("_")[1])
             max_number = max(max_number, number_part)
@@ -64,10 +87,10 @@ def add_type_qty(sheet_name,item_type, qty):
 # Example usage
 if __name__ == "__main__":
     # Clear all rows in Check In sheet
-    sheet_name = "Copy of Sigmotec Inventory"
+    #sheet_name = "Copy of Sigmotec Inventory"
     print("HElüp")
-    clear_sheet(sheet_name)
+    #clear_sheet(sheet_name)
 
     
     # Add 3 apples to the Check In sheet
-    add_type_qty(sheet_name,SensorType.APPLE, 3)
+    add_type_qty(sheet_name,SensorType.DRAGINO_PSLB, 3)

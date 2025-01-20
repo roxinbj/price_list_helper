@@ -1,4 +1,4 @@
-from price_list_helper.utils.types import SensorType
+from price_list_helper.utils.helpers import SensorType
 
 def handle_list_types(args):
     print("Sensor types are")

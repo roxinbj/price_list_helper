@@ -1,7 +1,7 @@
 import argparse
 from price_list_helper.commands import clear, list_types
 from price_list_helper.commands.add import handle_add, parse_item_type
-from price_list_helper.utils.types import SensorType
+from price_list_helper.utils.helpers import SensorType
 
 def main():
     print("Hello")
