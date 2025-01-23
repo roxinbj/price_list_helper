@@ -14,7 +14,7 @@ def main():
     add_parser.add_argument(
         "type", 
         type=parse_item_type, 
-        help="Type of the item (e.g., apple, banana, cherry)"
+        help="Type of the item (e.g., dragino-ps-lb, banana, cherry)"
     )
     add_parser.add_argument("qty", type=int, help="Quantity of the item")
     add_parser.set_defaults(func=handle_add)

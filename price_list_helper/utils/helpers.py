@@ -3,14 +3,14 @@ from enum import Enum
 
 # Define the enum for Item Types
 class SensorType(Enum):
-    DRAGINO_PSLB = "dragino_ps-lb" # Analog Reader
-    DRAGINO_DDS75 = "dragino_dds75" # Ultrasonics
-    DRAGINO_LT_22222 = "dragino_lt-22222" # Controller
-    RAK_7240V2_4G = "rak_7240v2-4g" # Gateway 4G
-    RAK_7240V2 = "rak_7240v2" # Gateway Ethernet
-    MILESIGHT_UC300 = "milesight_uc300" # UC300 Controller Lora
-    MILESIGHT_UC300_4G = "milesight_uc300-4g" # UC300 Controller 4G
-    MILESIGHT_EM300 = "milesight_em300" # Pulse Counter
+    DRAGINO_PSLB = "ps-lb" # Analog Reader
+    DRAGINO_DDS75 = "dds75" # Ultrasonics
+    DRAGINO_LT_22222 = "lt-22222" # Controller
+    RAK_7240V2_4G = "7240v2-4g" # Gateway 4G
+    RAK_7240V2 = "7240v2" # Gateway Ethernet
+    MILESIGHT_UC300 = "uc300" # UC300 Controller Lora
+    MILESIGHT_UC300_4G = "uc300-4g" # UC300 Controller 4G
+    MILESIGHT_EM300 = "em300" # Pulse Counter
     CT100 = "ct100" # Controller
 
 
