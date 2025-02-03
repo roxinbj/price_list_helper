@@ -14,7 +14,7 @@ class SensorType(Enum):
     CT100 = "ct100" # Controller
 
 
-sheet_name = "Copy of Sigmotec Inventory"
+sheet_name = "Sigmotec Inventory List"
 
 # Authenticate and initialize Google Sheets client
 def get_sheets_client():
@@ -35,7 +35,7 @@ def clear_sheet():
     worksheet.clear()
     print(f"Cleared all rows in sheet: {sheet_name} -> Check In: QR Code Print")
 
-def add_type_qty(item_type, qty):
+def add_type_qty(item_type, qty,price):
     """
     Add <qty> items of <item_type> to the sheet "Check In: QR Code Print".
 
@@ -76,11 +76,12 @@ def add_type_qty(item_type, qty):
 
     # Generate new rows for the Check In: QR Code Print sheet
     new_rows = [
-        f"{item_type.value}_{str(max_number + i).zfill(4)}" for i in range(1, qty + 1)
+        [f"{item_type.value}_{str(max_number + i).zfill(4)}",price,f"{item_type.value}"] for i in range(1, qty + 1)
     ]
 
+    print(new_rows)
     # Append new rows to the Check In sheet
-    check_in_sheet.append_rows([[row] for row in new_rows], value_input_option="USER_ENTERED")
+    check_in_sheet.append_rows(new_rows, value_input_option="USER_ENTERED")
 
     print(f"Added {qty} items of type '{item_type.value}' to Check In sheet.")
 

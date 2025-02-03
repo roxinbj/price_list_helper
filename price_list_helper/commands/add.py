@@ -16,6 +16,7 @@ def handle_add(args):
 
     item_type = args.type
     qty = args.qty
+    price = args.price
     # Logic to add the item
-    add_type_qty(item_type,qty)
+    add_type_qty(item_type,qty,price)
     #print(f"Adding {qty} of type '{item_type}' to the list.")

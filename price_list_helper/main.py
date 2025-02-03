@@ -1,7 +1,7 @@
 import argparse
 from price_list_helper.commands import clear, list_types
 from price_list_helper.commands.add import handle_add, parse_item_type
-from price_list_helper.utils.helpers import SensorType
+#from price_list_helper.utils.helpers import SensorType
 
 def main():
     print("Hello")
@@ -17,6 +17,7 @@ def main():
         help="Type of the item (e.g., dragino-ps-lb, banana, cherry)"
     )
     add_parser.add_argument("qty", type=int, help="Quantity of the item")
+    add_parser.add_argument("price",type=int,help="Cost to company price per piece of current order (NAD)")
     add_parser.set_defaults(func=handle_add)
 
     # Clear command
