@@ -32,7 +32,13 @@ def clear_sheet():
     client = get_sheets_client()
     sheet = client.open(sheet_name)
     worksheet = sheet.worksheet("Check In: QR Code Print")
-    worksheet.clear()
+    # Get the total number of rows in the worksheet
+    num_rows = len(worksheet.get_all_values())
+
+    # Clear all rows except row 1
+    if num_rows > 1:
+        worksheet.batch_clear([f"A2:Z{num_rows}"])  # Adjust range to cover all columns you need
+        worksheet.clear()
     print(f"Cleared all rows in sheet: {sheet_name} -> Check In: QR Code Print")
 
 def add_type_qty(item_type, qty,price):
@@ -81,7 +87,7 @@ def add_type_qty(item_type, qty,price):
 
     print(new_rows)
     # Append new rows to the Check In sheet
-    check_in_sheet.append_rows(new_rows, value_input_option="USER_ENTERED")
+    check_in_sheet.append_rows(new_rows, value_input_option="USER_ENTERED", table_range="A1") # Added table range to start only in row 2 and leave header in row 1
 
     print(f"Added {qty} items of type '{item_type.value}' to Check In sheet.")
 
