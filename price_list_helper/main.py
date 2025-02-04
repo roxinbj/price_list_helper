@@ -17,7 +17,7 @@ def main():
         help="Type of the item (e.g., dragino-ps-lb, banana, cherry)"
     )
     add_parser.add_argument("qty", type=int, help="Quantity of the item")
-    add_parser.add_argument("price",type=int,help="Cost to company price per piece of current order (NAD)")
+    add_parser.add_argument("price",type=float,help="Cost to company price per piece of current order (NAD)")
     add_parser.set_defaults(func=handle_add)
 
     # Clear command
