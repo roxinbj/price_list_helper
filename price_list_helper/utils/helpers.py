@@ -12,6 +12,7 @@ class SensorType(Enum):
     MILESIGHT_UC300_4G = "uc300-4g" # UC300 Controller 4G
     MILESIGHT_EM300 = "em300" # Pulse Counter
     CT100 = "ct100" # Controller
+    A_HYST_3M = "A-HYST-3m"
 
 
 sheet_name = "Sigmotec Inventory List"
